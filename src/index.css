@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes checkerboard-move {
+  0% { background-position: 0 0; }
+  100% { background-position: 96px 96px; }
+}
+
+@keyframes rainbow-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes lava-lamp {
+  0% { background-position: 0% 0%; }
+  25% { background-position: 50% 100%; }
+  50% { background-position: 100% 50%; }
+  75% { background-position: 50% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+@keyframes emoji-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.6;
+  }
+}
+
+@keyframes bubble-float {
+  0% {
+    transform: translateY(100vh) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(-10vh) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes fish-swim {
+  0% {
+    transform: translateX(-10vw) translateY(0);
+  }
+  25% {
+    transform: translateX(25vw) translateY(-15px);
+  }
+  50% {
+    transform: translateX(50vw) translateY(5px);
+  }
+  75% {
+    transform: translateX(75vw) translateY(-10px);
+  }
+  100% {
+    transform: translateX(110vw) translateY(0);
+  }
+}
+
+@keyframes fish-swim-reverse {
+  0% {
+    transform: translateX(110vw) scaleX(-1) translateY(0);
+  }
+  25% {
+    transform: translateX(75vw) scaleX(-1) translateY(-15px);
+  }
+  50% {
+    transform: translateX(50vw) scaleX(-1) translateY(5px);
+  }
+  75% {
+    transform: translateX(25vw) scaleX(-1) translateY(-10px);
+  }
+  100% {
+    transform: translateX(-10vw) scaleX(-1) translateY(0);
+  }
+}
+
+.checkerboard-bg {
+  --c1: #22c55e;
+  --c2: #ef4444;
+  --c3: #3b82f6;
+  --c4: #a855f7;
+  --c5: #f97316;
+  --sz: 48px;
+  background-color: var(--c5);
+  background-image:
+    conic-gradient(var(--c1) 90deg, var(--c2) 90deg 180deg, var(--c3) 180deg 270deg, var(--c4) 270deg) 0 0 / var(--sz) var(--sz),
+    conic-gradient(var(--c2) 90deg, var(--c3) 90deg 180deg, var(--c4) 180deg 270deg, var(--c1) 270deg) var(--sz) 0 / var(--sz) var(--sz),
+    conic-gradient(var(--c3) 90deg, var(--c4) 90deg 180deg, var(--c1) 180deg 270deg, var(--c2) 270deg) 0 var(--sz) / var(--sz) var(--sz),
+    conic-gradient(var(--c4) 90deg, var(--c1) 90deg 180deg, var(--c2) 180deg 270deg, var(--c3) 270deg) var(--sz) var(--sz) / var(--sz) var(--sz);
+  animation: checkerboard-move 3s linear infinite;
+}
+
+.rainbow-text {
+  background: linear-gradient(
+    90deg,
+    #ff0000, #ff8800, #ffff00, #00ff00, #0088ff, #8800ff, #ff0088, #ff0000
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow-shift 3s linear infinite;
+}
+
+.rainbow-bg {
+  background: linear-gradient(
+    135deg,
+    #ff0000, #ff8800, #ffff00, #00ff00, #0088ff, #8800ff, #ff0088, #ff0000
+  );
+  background-size: 400% 400%;
+  animation: lava-lamp 8s ease infinite;
+}
+
+.emoji-particle {
+  position: fixed;
+  pointer-events: none;
+  animation: emoji-fall linear forwards;
+  z-index: 5;
+}
+
+.bubble-particle {
+  position: fixed;
+  pointer-events: none;
+  animation: bubble-float linear forwards;
+  z-index: 5;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.6), rgba(255,255,255,0.1));
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.fish-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 5;
+  font-size: 28px;
+}
+
+.fish-left {
+  animation: fish-swim linear forwards;
+}
+
+.fish-right {
+  animation: fish-swim-reverse linear forwards;
+}
